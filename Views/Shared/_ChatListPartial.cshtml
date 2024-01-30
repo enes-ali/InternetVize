@@ -1,0 +1,28 @@
+﻿@model List<Message>
+
+<div class="col" id="message-container">
+    <h1 class="text-black-50 display-6 mb-5">Chats</h1>
+
+    <div>
+        @if (Model != null)
+        {
+            @foreach (var messageGroup in Model)
+            {
+                <div class="d-flex gap-2 message-group m-2">
+                    <div class="profilePicture">@messageGroup.SentBy.Name.Substring(0, 1)</div>
+
+                    <div>
+                        <p class="m-0 p-0">@messageGroup.SentBy.Name</p>
+                        <p class="m-0 p-0">@messageGroup.Body</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>No Messages</h2>
+        }
+    </div>
+
+    <a class=" floatingBtn" style="bottom: 50px; right: 50px;" asp-action="SendMessage">+</a>
+</div>

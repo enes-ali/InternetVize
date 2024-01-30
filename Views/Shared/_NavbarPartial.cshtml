@@ -1,0 +1,45 @@
+﻿
+<ul class="navbar-nav flex-grow-1 mr-auto justify-content-between">
+    <div class="d-inline-flex">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Messages</a>
+            </li>
+
+           if(User.IsInRole("Admin")){
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Groups</a>
+                </li>
+           }
+        }
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="d-inline-flex gap-2 align-items-center">
+            <span>@User.Identity.Name</span>
+
+            <li class="nav-item">
+                <a class="nav-link text-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+            </li>
+        </div>
+    }
+
+    else
+    {
+        <div class="d-inline-flex gap-2 align-items-center">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+            </li>
+        </div>
+    }
+</ul>
